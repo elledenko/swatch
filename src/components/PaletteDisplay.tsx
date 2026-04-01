@@ -63,7 +63,7 @@ export default function PaletteDisplay({ colors, imagePreview, onReset }: Props)
       <div className="flex items-center justify-between mb-8">
         <button
           onClick={onReset}
-          className="text-sm text-stone-500 hover:text-stone-700 transition-colors flex items-center gap-1"
+          className="text-sm text-navy/40 hover:text-navy transition-colors flex items-center gap-2 font-medium"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -72,11 +72,11 @@ export default function PaletteDisplay({ colors, imagePreview, onReset }: Props)
         </button>
 
         {saveSuccess ? (
-          <span className="text-sm text-green-600 font-medium">Saved!</span>
+          <span className="text-sm text-sage-dark font-medium px-4 py-2 bg-sage/10 rounded-full">Saved!</span>
         ) : (
           <button
             onClick={() => setShowSaveModal(true)}
-            className="px-4 py-2 bg-stone-900 text-white rounded-lg text-sm font-medium hover:bg-stone-800 transition-colors"
+            className="px-5 py-2 bg-terracotta text-white rounded-full text-sm font-medium hover:bg-terracotta-dark transition-colors"
           >
             Save Palette
           </button>
@@ -87,7 +87,7 @@ export default function PaletteDisplay({ colors, imagePreview, onReset }: Props)
         {/* Image preview + palette strip */}
         <div className="lg:w-80 shrink-0">
           {imagePreview && (
-            <div className="rounded-2xl overflow-hidden border border-stone-200 mb-4">
+            <div className="rounded-2xl overflow-hidden border border-blush/40 mb-4 shadow-sm">
               <img
                 src={imagePreview}
                 alt="Uploaded"
@@ -95,17 +95,18 @@ export default function PaletteDisplay({ colors, imagePreview, onReset }: Props)
               />
             </div>
           )}
-          <div className="flex rounded-xl overflow-hidden border border-stone-200">
+          <div className="flex rounded-2xl overflow-hidden border border-blush/40 shadow-sm">
             {colors.map((color, i) => (
               <button
                 key={i}
                 onClick={() => setExpandedIndex(i)}
-                className={`flex-1 h-14 transition-all ${expandedIndex === i ? "ring-2 ring-stone-900 ring-offset-1 z-10 rounded-lg" : ""}`}
+                className={`flex-1 h-16 transition-all duration-200 ${expandedIndex === i ? "ring-2 ring-navy ring-offset-2 z-10 rounded-xl scale-105" : "hover:scale-105"}`}
                 style={{ backgroundColor: color.hex }}
                 title={color.hex}
               />
             ))}
           </div>
+          <p className="text-xs text-navy/30 mt-3 text-center">Click a color to see matches</p>
         </div>
 
         {/* Color details */}
@@ -122,17 +123,11 @@ export default function PaletteDisplay({ colors, imagePreview, onReset }: Props)
         </div>
       </div>
 
-      {/* Disclaimer */}
-      <p className="mt-12 text-center text-xs text-stone-400">
-        Color matches are approximations based on digital color values. Actual paint colors may vary.
-        Pantone codes are nearest-match estimates, not official Pantone references.
-      </p>
-
       {/* Save modal */}
       {showSaveModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl">
-            <h3 className="text-lg font-serif font-semibold text-stone-900 mb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/30 backdrop-blur-sm">
+          <div className="bg-cream rounded-3xl p-8 w-full max-w-sm shadow-2xl border border-blush/40">
+            <h3 className="text-xl font-serif font-bold text-navy mb-5">
               Name your palette
             </h3>
             <input
@@ -141,23 +136,23 @@ export default function PaletteDisplay({ colors, imagePreview, onReset }: Props)
               onChange={(e) => setPaletteName(e.target.value)}
               placeholder="e.g., Living Room Inspo"
               autoFocus
-              className="w-full px-4 py-3 rounded-lg border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent text-stone-900"
+              className="w-full px-4 py-3 rounded-xl border border-blush focus:outline-none focus:ring-2 focus:ring-terracotta/40 focus:border-terracotta text-navy bg-white"
               onKeyDown={(e) => e.key === "Enter" && handleSave()}
             />
             {saveError && (
               <p className="mt-2 text-red-600 text-sm">{saveError}</p>
             )}
-            <div className="flex gap-3 mt-4">
+            <div className="flex gap-3 mt-5">
               <button
                 onClick={() => setShowSaveModal(false)}
-                className="flex-1 py-2 px-4 text-sm text-stone-600 hover:text-stone-800 transition-colors"
+                className="flex-1 py-3 px-4 text-sm text-navy/50 hover:text-navy transition-colors rounded-xl"
               >
                 Cancel
               </button>
               <button
                 onClick={handleSave}
                 disabled={saving || !paletteName.trim()}
-                className="flex-1 py-2 px-4 bg-stone-900 text-white rounded-lg text-sm font-medium hover:bg-stone-800 disabled:opacity-50 transition-colors"
+                className="flex-1 py-3 px-4 bg-terracotta text-white rounded-xl text-sm font-medium hover:bg-terracotta-dark disabled:opacity-50 transition-colors"
               >
                 {saving ? "Saving..." : "Save"}
               </button>

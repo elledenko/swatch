@@ -12,28 +12,28 @@ interface Props {
 
 export default function ColorCard({ color, index, isExpanded, onToggle }: Props) {
   return (
-    <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
+    <div className="bg-white/70 rounded-2xl border border-blush/30 overflow-hidden shadow-sm backdrop-blur-sm">
       <button
         onClick={onToggle}
-        className="w-full flex items-center gap-4 p-4 hover:bg-stone-50 transition-colors text-left"
+        className="w-full flex items-center gap-4 p-4 hover:bg-white/50 transition-colors text-left"
       >
         <div
-          className="w-14 h-14 rounded-xl shrink-0 shadow-inner"
+          className="w-14 h-14 rounded-xl shrink-0 shadow-sm border border-white/50"
           style={{ backgroundColor: color.hex }}
         />
         <div className="flex-1 min-w-0">
-          <p className="font-mono text-sm font-semibold text-stone-900">
+          <p className="font-mono text-sm font-semibold text-navy">
             {color.hex.toUpperCase()}
           </p>
-          <p className="text-xs text-stone-400 mt-0.5">
+          <p className="text-xs text-navy/35 mt-0.5">
             RGB({color.rgb.r}, {color.rgb.g}, {color.rgb.b})
           </p>
         </div>
-        <span className="text-xs font-medium text-stone-400 bg-stone-100 px-2 py-1 rounded-full">
-          Color {index + 1}
+        <span className="text-xs font-medium text-terracotta/70 bg-terracotta/8 px-3 py-1 rounded-full">
+          {index + 1}
         </span>
         <svg
-          className={`w-5 h-5 text-stone-400 transition-transform ${isExpanded ? "rotate-180" : ""}`}
+          className={`w-5 h-5 text-navy/30 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

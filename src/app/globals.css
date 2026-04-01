@@ -3,4 +3,24 @@
 @theme inline {
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
+  --color-cream: #FDF6EC;
+  --color-warm-white: #FAF3E8;
+  --color-terracotta: #C1644B;
+  --color-terracotta-dark: #A8523C;
+  --color-sage: #8B9D77;
+  --color-sage-dark: #6B7D5A;
+  --color-ochre: #D4A843;
+  --color-ochre-dark: #B88F2F;
+  --color-navy: #2B3A4E;
+  --color-plum: #6B4C6E;
+  --color-blush: #E8C4B8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: #E8C4B8;
+  color: #2B3A4E;
 }

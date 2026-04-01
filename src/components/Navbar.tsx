@@ -33,11 +33,11 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 bg-amber-50/80 backdrop-blur-md border-b border-stone-200">
+    <nav className="sticky top-0 z-50 bg-cream/80 backdrop-blur-md border-b border-blush/40">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="text-2xl font-bold tracking-tight text-stone-900 font-serif"
+          className="text-2xl font-bold tracking-tight text-navy font-serif"
         >
           Swatch
         </Link>
@@ -47,13 +47,13 @@ export default function Navbar() {
             <>
               <Link
                 href="/dashboard"
-                className="text-sm font-medium text-stone-600 hover:text-stone-900 transition-colors"
+                className="text-sm font-medium text-navy/60 hover:text-navy transition-colors"
               >
                 My Palettes
               </Link>
               <button
                 onClick={handleLogout}
-                className="text-sm font-medium text-stone-500 hover:text-stone-700 transition-colors"
+                className="text-sm font-medium text-navy/40 hover:text-navy/70 transition-colors"
               >
                 Log out
               </button>
@@ -61,7 +61,7 @@ export default function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="text-sm font-medium px-4 py-2 bg-stone-900 text-white rounded-lg hover:bg-stone-800 transition-colors"
+              className="text-sm font-medium px-5 py-2 bg-terracotta text-white rounded-full hover:bg-terracotta-dark transition-colors"
             >
               Sign in
             </Link>

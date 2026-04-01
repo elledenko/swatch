@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Swatch
+
+Upload an image, get a color palette matched across major paint brands and Pantone codes.
+
+Built for interior designers, home renovators, and anyone who wants to go from inspiration photo to paintable color in seconds.
+
+## Features
+
+- **Image upload** — drag & drop or click to browse
+- **Color extraction** — extracts 6 dominant colors from any image
+- **Multi-brand matching** — maps each color to the nearest match across:
+  - Sherwin-Williams
+  - Benjamin Moore
+  - Behr
+  - PPG
+  - Valspar
+  - Pantone
+- **Save palettes** — name and save your palettes (requires account)
+- **CIEDE2000 matching** — uses perceptual color distance in LAB color space for accurate results
+
+## Tech Stack
+
+- **Frontend:** Next.js 15 (App Router) + Tailwind CSS
+- **Backend:** Supabase (Auth + Postgres)
+- **Deployment:** Vercel
+- **Language:** TypeScript
+- **Color extraction:** node-vibrant
+- **Color matching:** delta-e (CIEDE2000)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+git clone https://github.com/elledenko/swatch.git
+cd swatch
+npm install
+cp .env.example .env.local
+# Fill in your Supabase keys in .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Disclaimer
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Color matches are approximations based on digital color values. Actual paint colors may vary depending on lighting, surface, and finish. Pantone codes are nearest-match estimates, not official Pantone references.

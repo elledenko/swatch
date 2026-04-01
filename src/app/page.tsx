@@ -59,16 +59,28 @@ export default function HomePage() {
     <div className="max-w-6xl mx-auto px-6 py-16">
       {!colors ? (
         <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-serif font-bold text-stone-900 mb-4">
-            Upload an image.
+          <p className="text-sm font-medium tracking-widest uppercase text-terracotta mb-6">
+            Image to Paint Color
+          </p>
+          <h1 className="text-5xl md:text-7xl font-serif font-bold text-navy mb-6 leading-tight">
+            Upload an image.<br />
+            <span className="text-terracotta">Find your colors.</span>
           </h1>
-          <p className="text-xl text-stone-500 mb-12">
-            Find your colors across every major paint brand.
+          <p className="text-lg text-navy/50 mb-12 max-w-md mx-auto">
+            Instantly match any photo to Sherwin-Williams, Benjamin Moore, Behr, PPG, Valspar &amp; Pantone.
           </p>
           <ImageUploader onUpload={handleImageUpload} loading={loading} />
           {error && (
             <p className="mt-4 text-red-600 text-sm">{error}</p>
           )}
+          <div className="mt-16 flex items-center justify-center gap-8 text-xs text-navy/30 font-medium tracking-wider uppercase">
+            <span>Sherwin-Williams</span>
+            <span>Benjamin Moore</span>
+            <span>Behr</span>
+            <span>PPG</span>
+            <span>Valspar</span>
+            <span>Pantone</span>
+          </div>
         </div>
       ) : (
         <PaletteDisplay
