@@ -78,9 +78,8 @@ function getShopUrl(brand: string, code: string, name: string): string | undefin
       return `https://www.benjaminmoore.com/en-us/paint-colors/color/${bmCode}/${bmName}`;
     }
     case "Sherwin-Williams": {
-      const swNum = code.replace(/\D/g, "");
-      const swName = slugify(name);
-      return `https://www.sherwin-williams.com/en-us/color/color-family/sw${swNum}-${swName}`;
+      const query = encodeURIComponent(`${code} ${name}`);
+      return `https://www.sherwin-williams.com/en-us/color?query=${query}`;
     }
     case "PPG": {
       const ppgName = slugify(name);
