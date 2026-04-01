@@ -11,6 +11,7 @@ export interface BrandMatch {
   name: string;
   hex: string;
   deltaE: number;
+  shopUrl?: string;
 }
 
 export interface MatchedColor extends ExtractedColor {

@@ -60,7 +60,39 @@ function findClosestMatch(
     name: bestMatch.name,
     hex: bestMatch.hex,
     deltaE: Math.round(bestDelta * 100) / 100,
+    shopUrl: getShopUrl(brand, bestMatch.code, bestMatch.name),
   };
+}
+
+function slugify(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function getShopUrl(brand: string, code: string, name: string): string | undefined {
+  switch (brand) {
+    case "Behr":
+      return `https://www.behr.com/consumer/ColorDetailView/${code}`;
+    case "Benjamin Moore": {
+      const bmCode = code.toLowerCase();
+      const bmName = slugify(name);
+      return `https://www.benjaminmoore.com/en-us/paint-colors/color/${bmCode}/${bmName}`;
+    }
+    case "Sherwin-Williams": {
+      const swNum = code.replace(/\D/g, "");
+      const swName = slugify(name);
+      return `https://www.sherwin-williams.com/en-us/color/color-family/sw${swNum}-${swName}`;
+    }
+    case "PPG": {
+      const ppgName = slugify(name);
+      return `https://www.ppgpaints.com/ppg-colors/${ppgName}`;
+    }
+    case "Valspar": {
+      const query = encodeURIComponent(`${name} ${code}`);
+      return `https://www.valspar.com/en/colors/browse-colors?q=${query}`;
+    }
+    default:
+      return undefined;
+  }
 }
 
 export function matchColors(extractedColors: ExtractedColor[]): MatchedColor[] {
