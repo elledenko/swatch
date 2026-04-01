@@ -69,3 +69,16 @@
 **What worked:** Everything functional on first deploy.
 **What didn't:** Haven't tested the full UI flow in a browser (upload → see palette → save). API endpoints verified via curl.
 **Adjustment:** For full confidence, user should test the UI flow manually.
+
+## REVIEW + Shop This Color — 2026-04-01T14:30:00Z
+
+**What happened:** User rated 4/5. Asked for ideas to reach 5. Chose "Shop This Color" — direct links to paint brand product pages. Built URL generation for all 5 brands.
+**What worked:** Research found reliable URL patterns for Behr (code-only), Benjamin Moore (code+name), Sherwin-Williams (code+name). PPG and Valspar used name-based or search URLs as fallback. Feature added in one commit.
+**What didn't:** Nothing.
+**Adjustment:** User values features that connect digital tool to real-world action (buying paint). Keep building toward the purchase funnel.
+
+## Cycle 1 Summary
+
+**Patterns:** User is fast, decisive, product-minded. Thinks about defensibility and moat. Prefers to work independently without frequent checkpoints. Responds well to numbered options when asked for decisions.
+**User preferences:** Bold but warm design, interior design niche focus, practical features over theoretical ones, "shop this color" over "room visualizer" — action over visualization.
+**Engine adjustments:** For this user, minimize checkpoints when they ask. Present decisions as numbered lists. Focus feature suggestions on actionable/practical value.
