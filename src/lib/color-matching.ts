@@ -68,27 +68,23 @@ function slugify(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
+// All shop links use search/query URLs to guarantee they resolve.
+// Direct links (e.g. /ColorDetailView/CODE) break when slugs or paths
+// don't match the brand site's exact expectations. Search URLs are safe.
 function getShopUrl(brand: string, code: string, name: string): string | undefined {
+  const q = encodeURIComponent(`${code} ${name}`);
   switch (brand) {
     case "Behr":
+      // Behr is the exception — their URL is code-only, verified reliable
       return `https://www.behr.com/consumer/ColorDetailView/${code}`;
-    case "Benjamin Moore": {
-      const bmCode = code.toLowerCase();
-      const bmName = slugify(name);
-      return `https://www.benjaminmoore.com/en-us/paint-colors/color/${bmCode}/${bmName}`;
-    }
-    case "Sherwin-Williams": {
-      const query = encodeURIComponent(`${code} ${name}`);
-      return `https://www.sherwin-williams.com/en-us/color?query=${query}`;
-    }
-    case "PPG": {
-      const ppgName = slugify(name);
-      return `https://www.ppgpaints.com/ppg-colors/${ppgName}`;
-    }
-    case "Valspar": {
-      const query = encodeURIComponent(`${name} ${code}`);
-      return `https://www.valspar.com/en/colors/browse-colors?q=${query}`;
-    }
+    case "Benjamin Moore":
+      return `https://www.benjaminmoore.com/en-us/paint-colors/search?query=${q}`;
+    case "Sherwin-Williams":
+      return `https://www.sherwin-williams.com/en-us/color?query=${q}`;
+    case "PPG":
+      return `https://www.ppgpaints.com/browse-all-colors?search=${q}`;
+    case "Valspar":
+      return `https://www.valspar.com/en/colors/browse-colors?q=${q}`;
     default:
       return undefined;
   }
