@@ -41,3 +41,31 @@
 **What worked:** Supabase CLI provisioning was smooth (after org switch). Email confirmation disabled via config push.
 **What didn't:** Hit free project limit on first org — had to use the paid org (fiire).
 **Adjustment:** Check org plan before attempting project creation.
+
+## Phase 7: PLAN — 2026-04-01T13:00:00Z
+
+**What happened:** Wrote build plan with 5 phases covering auth, upload, matching, save, and polish.
+**What worked:** Clear phase breakdown with milestones and acceptance criteria.
+**What didn't:** Nothing.
+**Adjustment:** None needed.
+
+## BUILD Phase 1-4: Core App — 2026-04-01T13:15:00Z
+
+**What happened:** Built all core functionality in one push — auth, upload, extraction, matching, save palettes. User asked to work independently without checkpoints.
+**What worked:** node-vibrant extracts accurate colors. CIEDE2000 matching produces excellent results (delta E < 3 for closest matches). Static JSON datasets for paint brands work well — fast in-memory matching. Supabase auth + RLS is clean.
+**What didn't:** node-vibrant ESM import broke the build — needed `node-vibrant/node` named import. delta-e has no type declarations — needed custom .d.ts. Both fixed quickly.
+**Adjustment:** For future projects: always check ESM/CJS export patterns before importing. Add .d.ts files proactively for untyped packages.
+
+## BUILD Phase 5: Polish — 2026-04-01T13:45:00Z
+
+**What happened:** Applied jennaisfeeling-inspired design system — cream, terracotta, sage, ochre, navy, blush. Playfair Display for headlines, Inter for body. Rounded, warm, editorial feel.
+**What worked:** Custom Tailwind theme colors made the reskin fast. The warm palette feels cohesive and distinct from generic design tools.
+**What didn't:** Nothing.
+**Adjustment:** The design system approach (define theme colors in CSS, apply across components) scales well.
+
+## Smoke Test — 2026-04-01T14:00:00Z
+
+**What happened:** Tested live deployment. Landing page renders, login renders, API extract returns 6 colors, API match returns accurate brand matches.
+**What worked:** Everything functional on first deploy.
+**What didn't:** Haven't tested the full UI flow in a browser (upload → see palette → save). API endpoints verified via curl.
+**Adjustment:** For full confidence, user should test the UI flow manually.
